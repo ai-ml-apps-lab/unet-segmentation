@@ -57,9 +57,10 @@ with torch.no_grad():
     output = model(input_image)
 
     output = torch.sigmoid(output)
-
     output = (output > 0.5).float()
 
+    # output = torch.softmax(output, dim=1)
+    # output = torch.argmax(output, dim=1)
 
 # ------------------------
 # Visualization
@@ -77,6 +78,8 @@ plt.title("Input Image")
 
 plt.subplot(1, 2, 2)
 plt.imshow(pred_mask, cmap="gray")
+# plt.imshow(pred_mask.squeeze(), cmap="jet")
+
 plt.title("Predicted Mask")
 
 plt.show()

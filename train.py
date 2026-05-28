@@ -45,9 +45,10 @@ loader = DataLoader(
 # Model
 # ------------------------
 
-model = UNet().to(DEVICE)
+model = UNet(out_channels=1).to(DEVICE)
 
 criterion = nn.BCEWithLogitsLoss()
+# criterion = nn.CrossEntropyLoss()
 
 optimizer = Adam(
     model.parameters(),

@@ -47,5 +47,7 @@ class SegmentationDataset(Dataset):
 
         # Convert mask to binary
         mask = (mask > 0.5).float()
+        # mask = (mask * 255).long()
+        # mask = mask.squeeze(0)
 
         return image, mask

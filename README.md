@@ -94,7 +94,7 @@ python train.py
 ---
 ## Evaluation
 
-Validation loss is computed after each training epoch.
+### Validation loss is computed after each training epoch.
 ---
 
 ## Prediction

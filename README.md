@@ -1,16 +1,10 @@
-# U-Net Image Segmentation App
+# U-Net Image Segmentation
 
 PyTorch implementation of a U-Net architecture for image segmentation.
 
-Supports both:
-
-* Binary segmentation
-* Multi-class semantic segmentation
-
-The application includes dataset handling, model training, evaluation, model persistence, and single-image inference.
+The application includes dataset handling, model training, evaluation, and single-image prediction.
 
 ---
-
 ## Main Features
 
 * U-Net architecture implemented in PyTorch
@@ -45,6 +39,7 @@ The application includes dataset handling, model training, evaluation, model per
 ## Repository Structure
 
 ```bash
+images/
 dataset/
     binary_dataset/
         images/
@@ -85,14 +80,6 @@ pip install -r requirements.txt
 mode = "binary"
 ```
 
-Run:
-
-```bash
-python train.py
-```
-
----
-
 ### Multi-Class Segmentation
 
 ```python
@@ -104,15 +91,24 @@ Run:
 ```bash
 python train.py
 ```
+---
+## Evaluation
 
+Validation loss is computed after each training epoch.
 ---
 
 ## Prediction
 
-Select the desired mode and image path in:
+### Binary Segmentation
 
 ```python
-predict.py
+mode = "binary"
+```
+
+### Multi-Class Segmentation
+
+```python
+mode = "multiclass"
 ```
 
 Run:
@@ -121,6 +117,30 @@ Run:
 python predict.py
 ```
 
+---
+
+## Outputs
+
+### Training
+
+* Training loss
+* Validation loss
+* Saved model (.pth)
+
+### Prediction
+
+* Input image
+* Predicted segmentation mask
+
+### (a) Binary inference example 
+
+![APP](images/fig1.png)
+
+---
+
+### (b) Multiclass inference example 
+
+![APP](images/fig2.png)
 ---
 
 ## Supported Datasets
@@ -137,8 +157,6 @@ masks/
 Example applications:
 
 * Medical anomaly segmentation
-* Tumor segmentation
-* Defect detection
 * Object extraction
 
 ---
@@ -158,38 +176,8 @@ The class dictionary maps RGB colors to class labels used during training.
 Example applications:
 
 * Road scene segmentation
-* Autonomous driving
 * Land cover classification
 * Urban scene understanding
-
----
-
-## Evaluation
-
-Validation loss is computed after each training epoch.
-
-### Binary Segmentation
-
-* BCEWithLogitsLoss
-
-### Multi-Class Segmentation
-
-* CrossEntropyLoss
-
----
-
-## Outputs
-
-### Training
-
-* Training loss
-* Validation loss
-* Saved model (.pth)
-
-### Prediction
-
-* Input image
-* Predicted segmentation mask
 
 ---
 

@@ -23,10 +23,11 @@ class SegmentationDataset(Dataset):
             transforms.ToTensor()
         ])
 
-        self.transform_mask = transforms.Compose([
-            transforms.Resize((self.image_size, self.image_size)),
-            transforms.ToTensor()
-        ])
+        if self.class_dict_path is None:
+            self.transform_mask = transforms.Compose([
+                transforms.Resize((self.image_size, self.image_size)),
+                transforms.ToTensor()
+            ])
 
         if self.class_dict_path is not None:
             self.class_dict = pd.read_csv(self.class_dict_path)
@@ -73,6 +74,7 @@ class SegmentationDataset(Dataset):
                 matches = np.all(mask == color, axis=-1) #(H, W, 3)
                 label_mask[matches] = class_id
 
+            # print(label_mask.shape)
             mask = torch.tensor(label_mask, dtype=torch.long)
 
         else:

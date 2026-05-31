@@ -65,7 +65,7 @@ class DecoderBlock(nn.Module):
 
 class UNet(nn.Module):
 
-    def __init__(self, in_channels=3, out_channels=1):
+    def __init__(self, in_channels, out_channels):
         super().__init__()
 
         # Encoder
